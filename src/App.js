@@ -1,11 +1,15 @@
-import './App.css';
+import React from "react";
+import Main from "./Main/Main";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function App() {
+const App = () => {
+  
   return (
-    <div className="App">
-      
+    <div className="app">
+      <Main />
     </div>
   );
-}
+};
 
 export default App;
