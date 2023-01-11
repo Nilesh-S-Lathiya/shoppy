@@ -8,15 +8,14 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from "../Constant/ProductConstants";
 
-
 // GET ALL PRODUCT
-export const listProduct = (keyword) => async (dispatch) => {
+export const listProduct = () => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_LIST_REQUEST,
     });
     // console.log(keyword.keyword)
-    const { data } = await axios.get(`/api/products?keyword=${keyword.keyword ? keyword.keyword: keyword}`);
+    const { data } = await axios.get(`/api/products/p`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -28,7 +27,6 @@ export const listProduct = (keyword) => async (dispatch) => {
     });
   }
 };
-
 
 //GET SINGLE PRODUCT
 export const listProductDetails = (id) => async (dispatch) => {
@@ -48,6 +46,3 @@ export const listProductDetails = (id) => async (dispatch) => {
     });
   }
 };
-
-
-
