@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.btn
+{
+    @apply text-white bg-[#8a4af3] rounded-md shadow-md mt-[30px] p-3;
+}
+
+.product_img
+{
+   @apply w-[80%] h-[80%] rounded-lg shadow-lg hover:scale-[1.1] ease-in duration-300;
+}
+
+.colorSelect
+{
+   @apply w-[2rem] h-[2rem] rounded-full border-2 p-[10px] ml-5 cursor-pointer;
+}
+
+.input-text{
+    @apply font-poppins bg-transparent border border-t-0 border-l-0 border-r-0 focus:outline-none text-white tracking-wide;
+}
+@tailwind utilities;
