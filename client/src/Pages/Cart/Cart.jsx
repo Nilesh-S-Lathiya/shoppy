@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./cart.scss";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { removefromcart } from "../../Redux/Actions/CartActions";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
-  useEffect(()=>{
+  useEffect(() => {
     window.scroll({ top: "0", left: "0", behavior: "smooth" });
-  },[])
+  }, []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const SummaryItemStyle = "SummaryItem flex justify-between mt-3 w-[100%]";
   const ProductDivStyle = "flex w-[100%] h-auto items-center mobile:flex-col";
   const PriceQuantityStyle =
@@ -19,6 +21,14 @@ const Cart = () => {
   const handleRemove = (id) => {
     dispatch(removefromcart(id));
   };
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  useEffect(() => {
+    if (!userInfo) {
+      alert("First you need to Login")
+      navigate("/login");
+    }
+  });
 
   return (
     <div>
