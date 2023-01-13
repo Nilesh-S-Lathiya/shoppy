@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const DropDownMenu = () => {
+const DropDownMenu = ({username, useremail, logout}) => {
   const [dropdown, setDropDown] = useState(false);
 
   const handleOpenMenu = () => {
@@ -14,7 +14,7 @@ const DropDownMenu = () => {
         onClick={handleOpenMenu}
       >
         <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-          User Name
+          {username}
         </span>
       </button>
 
@@ -22,8 +22,8 @@ const DropDownMenu = () => {
       {dropdown ? (
         <div className="absolute z-50 right-0 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
           <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
-            <div>Bonnie Green</div>
-            <div className="font-medium truncate">name@xyz.com</div>
+            <div>{username}</div>
+            <div className="font-medium truncate">{useremail}</div>
           </div>
           <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
             <li>
@@ -51,7 +51,7 @@ const DropDownMenu = () => {
               </Link>
             </li>
           </ul>
-          <div className="py-1">
+          <div className="py-1" onClick={logout}>
             <Link
               to="#"
               className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"

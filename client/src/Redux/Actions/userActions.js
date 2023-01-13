@@ -9,8 +9,6 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../Constant/UserConstant";
 
-
-
 //LOGIN
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -27,26 +25,31 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+
+    // console.log(data)
+    // .then((data) => {
+    //   console.log(data);
+    // }).catch((err)=>{
+    //   console.log(err)
+    // })
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-   
+
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
+    // console.log(error.response.data.message);
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
-        error.responce && error.responce.data.message
-          ? error.responce.data.message
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
-    
   }
 };
 
 //LOGOUT
 
 export const logout = () => (dispatch) => {
-
-
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
   // navigate("/login")
@@ -72,17 +75,15 @@ export const register = (name, email, password) => async (dispatch) => {
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-   
+
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:
-        error.responce && error.responce.data.message
-          ? error.responce.data.message
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
-    
   }
 };
-

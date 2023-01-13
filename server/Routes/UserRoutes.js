@@ -10,28 +10,32 @@ const userRouter = express.Router();
 userRouter.post(
   "/login",
   asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({
-      email: email,
-    });
+    
+      const { email, password } = req.body;
+    const user = await User.findOne({ email });
     // console.log(user);
-    const pass = await user.matchPassword(password);
+    // const pass = await user.matchPassword(password);
     // console.log(pass)
-    if (user) {
-      if (pass) {
-        res.json({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          isAdmin: user.isAdmin,
-          token: generateToken(user._id),
-          createdAt: user.createdAt,
-        });
-      } else {
-        res.status(401).send( "Invaild Password");
-      }
+    if (user && (await user.password === password)) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        token: generateToken(user._id),
+        createdAt: user.createdAt,
+      });
+
     } else {
-      res.status(401).send({ result: "Invaild email" });
+      // console.log("test")
+      // res.status(401).send("Invaild Password");
+      // res.status(406);
+      // throw new Error({res:"invaild password"});
+      // res.status(401).send({ error.message: "Invalid User Data" });
+      // res.status(405).send({ hall: "Invaild email" });
+      // res.status(406);
+      // throw new error({ message: "Invaild email or password" });
+      res.status(406).send({message:"Invaild Email or Password"});
     }
   })
 );

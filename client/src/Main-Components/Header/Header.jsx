@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { GoThreeBars } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.scss";
 import DropDownMenu from "../../Components/DropDown/DropDownMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/Actions/userActions";
 
 const Header = () => {
   let Links = [
@@ -12,18 +14,29 @@ const Header = () => {
   ];
   let [open, setOpen] = useState(false);
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logouthandle = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+  // console.log(userInfo)
+
   return (
     <div className="">
       <div className="shadow-md w-full fixed top-0 z-50">
         <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
-         <Link to="/">
-         <div
-            className="font-bold text-[30px] cursor-pointer flex items-center font-[Poppins] 
+          <Link to="/">
+            <div
+              className="font-bold text-[30px] cursor-pointer flex items-center font-[Poppins] 
         text-gray-800"
-          >
-            Shoppy
-          </div>
-         </Link>
+            >
+              Shoppy
+            </div>
+          </Link>
 
           <div
             onClick={() => setOpen(!open)}
@@ -49,18 +62,24 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            
-            <li className="md:ml-6 text-xl md:my-0 my-7">
-              <Link
-                to="/login"
-                className="text-gray-800 rounded-[9px] hover:text-white duration-500 p-2 hover:bg-blue-700 active"
-              >
-                LOGIN
-              </Link>
-            </li>
-            <li className="md:ml-6 text-xl md:my-0 my-7">
-              <DropDownMenu />
-            </li>
+            {userInfo ? (
+              <li className="md:ml-6 text-xl md:my-0 my-7">
+                <DropDownMenu
+                  username={userInfo.name}
+                  useremail={userInfo.email}
+                  logout={logouthandle}
+                />
+              </li>
+            ) : (
+              <li className="md:ml-6 text-xl md:my-0 my-7">
+                <Link
+                  to="/login"
+                  className="text-gray-800 rounded-[9px] hover:text-white duration-500 p-2 hover:bg-blue-700 active"
+                >
+                  LOGIN
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
