@@ -8,7 +8,7 @@ const productRoute = express.Router();
 productRoute.get(
   "/p",
   asyncHandler(async (req, res) => {
-    console.log("object")
+    // console.log("object")
     const keyword = req.query.keyword
       ? {
           name: {
