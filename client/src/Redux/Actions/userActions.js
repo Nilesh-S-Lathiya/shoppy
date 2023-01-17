@@ -4,6 +4,9 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
+  USER_OTPVERIFY_FAIL,
+  USER_OTPVERIFY_REQUEST,
+  USER_OTPVERIFY_SUCCESS,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -74,12 +77,46 @@ export const register = (name, email, password) => async (dispatch) => {
       config
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+
+
+//OTP VERIFY
+
+export const otpverify = (userId, otp) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_OTPVERIFY_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/users/verify`,
+      { userId,otp },
+      config
+    );
+    dispatch({ type: USER_OTPVERIFY_SUCCESS, payload: data });
+    // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+
+    localStorage.setItem("confirmOtp", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_OTPVERIFY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

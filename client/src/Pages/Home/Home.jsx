@@ -41,7 +41,7 @@ const Home = () => {
               <img src="./images/banner_left.png" alt="" />
             </div>
           </div>
-          <div>
+          <div style={{marginTop:"0px"}}>
             <div className="aspect-w-16 aspect-h-9">
               <img src="./images/banner_right.png" alt="" />
             </div>

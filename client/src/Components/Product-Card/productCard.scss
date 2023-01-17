@@ -17,3 +17,57 @@
     line-height: 2;
     // text-overflow: ellipsis;
   }
+
+  //////////////////////////////////////
+
+
+  .Surgeries-images {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+  }
+  .surgery-tabs {
+    text-align: center;
+    width: 100%;
+    background-color: #90d0f1 !important;
+    color: #0072ab !important;
+    font-weight: 600;
+    font-family: revert;
+    border-top: none !important;
+    cursor: pointer;
+  }
+  .col-middle-surgires {
+    display: flex;
+    justify-content: center;
+  }
+  .Surgires-card {
+    border: none !important;
+    width: 199px;
+  }
+  .Surgires-card:hover {
+    transform: scale(0.9);
+    transition: 0.5s;
+  }
+  .sur-arror-slider {
+    background-color: #0094de !important;
+    bottom: 125px !important;
+    width: 27px;
+    height: 26px;
+  }
+  .sur-side-arrow {
+    position: relative;
+    top: -7px;
+  }
+  
+  .sur-inner-slider {
+    width: 100%;
+    align-items: center;
+    display: flex !important;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+  }
+  .pad-s4 {
+    padding-left: 60px ;
+    padding-top: 30px !important;
+  }
+  

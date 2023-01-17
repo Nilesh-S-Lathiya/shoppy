@@ -15,8 +15,9 @@ const Header = () => {
   let [open, setOpen] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo } = userLogin ;
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logouthandle = () => {

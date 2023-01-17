@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { productdetailsReducer, productListReducer } from "./Reducers/ProductReducers";
 import { cartReducer } from "./Reducers/CartReducers";
-import { userLoginReducer, userRegisterReducer } from "./Reducers/UserReducers";
+import { userLoginReducer, userOtpVerifyReducer, userRegisterReducer } from "./Reducers/UserReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -11,6 +11,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userOtpVerify: userOtpVerifyReducer,
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
@@ -23,12 +24,22 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
+// Otp
+  const confirmFromLocalStorage = localStorage.getItem("confirmOtp")
+  ? JSON.parse(localStorage.getItem("confirmOtp"))
+  : null;
+
+  
+
 const initialState = {
   cart: {
     cartItems: cartItemsFromLocalStorage,
   },
   userLogin: {
     userInfo: userInfoFromLocalStorage,
+  },
+  userOtpVerify: {
+    confirmOtp: confirmFromLocalStorage,
   },
 };
 
