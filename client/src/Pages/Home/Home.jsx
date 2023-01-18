@@ -18,7 +18,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(listProduct());
   }, [dispatch]);
-
   return (
     <div className=" mb-">
       <div className="mt-14">
@@ -41,7 +40,7 @@ const Home = () => {
               <img src="./images/banner_left.png" alt="" />
             </div>
           </div>
-          <div style={{marginTop:"0px"}}>
+          <div style={{ marginTop: "0px" }}>
             <div className="aspect-w-16 aspect-h-9">
               <img src="./images/banner_right.png" alt="" />
             </div>
@@ -66,6 +65,7 @@ const Home = () => {
           className="border rounded-tl-[9px] rounded-bl-[9px] p-1 pl-3 w-[50%]"
           placeholder="Enter your Email Address"
         />
+       
         <button className="bg-blue-600 w-[15%] p-3 text-white rounded-tr-[9px] rounded-br-[9px]">
           Submit
         </button>

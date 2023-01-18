@@ -1,0 +1,19 @@
+.p_dashbord {
+    max-width: 100%;
+    width: 100%;
+      height: 100%;
+     
+  
+  }
+  .p_navbar_section {
+    width: 100%;
+    height: 100%;
+      
+      padding-left: 100px;
+  
+  }
+  .p_sidebar_section {
+    display: flex;
+    height: 100%;
+  }
+  

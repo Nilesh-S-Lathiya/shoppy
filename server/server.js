@@ -7,6 +7,11 @@ import { errorHandler, notFount } from "./Middlewere/Error.js";
 import productRoute from "./Routes/ProductRoute.js";
 import userRouter from "./Routes/UserRoutes.js";
 
+// upload Image
+
+
+// Upload Image End
+
 dotenv.config();
 connectDatabase();
 const app = express();
@@ -20,6 +25,7 @@ app.get("/api/products/today", (req, res) => {
 app.use("/api/import", ImportData);
 app.use("/api/products", productRoute);
 app.use("/api/users", userRouter);
+app.use('/productimageurl',express.static('./upload/images'))
 
 app.use(notFount);
 app.use(errorHandler);
