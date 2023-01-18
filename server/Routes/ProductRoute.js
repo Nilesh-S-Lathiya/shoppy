@@ -2,12 +2,17 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import Product from "./../Models/ProductModel.js";
 
+
+
+
+
 const productRoute = express.Router();
 
 // GET ALL PRODUCTS
 productRoute.get(
-  "/",
+  "/p",
   asyncHandler(async (req, res) => {
+    // console.log("object")
     const keyword = req.query.keyword
       ? {
           name: {
@@ -17,7 +22,7 @@ productRoute.get(
         }
       : {};
     const products = await Product.find({...keyword});
-    res.json(products);
+    res.json(products)
   })
 );
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AdminRouting from "../Admin/AdminRouting";
 import Footer from "../Main-Components/Footer/Footer";
 import Header from "../Main-Components/Header/Header";
 import Cart from "../Pages/Cart/Cart";
@@ -13,7 +14,7 @@ const Main = () => {
     <>
       <Header />
       <div style={{
-        marginTop:"85px"
+        marginTop:"77px"
       }}>
       <Routes>
         <Route>
@@ -22,6 +23,7 @@ const Main = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin/*" element={<AdminRouting />} />
         </Route>
       </Routes>
       </div>

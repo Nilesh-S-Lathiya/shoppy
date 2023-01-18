@@ -1,15 +1,23 @@
 import React, { useEffect } from "react";
 import MainSlider from "../../Components/HomeComponent/MainSlider/MainSlider";
 import TodaySlider from "../../Components/HomeComponent/TodaySlider/TodaySlider";
-import ProductDataApi from "../../Components/ProductData";
+
 import "./home.scss";
 import { FaRegThumbsUp } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { listProduct } from "../../Redux/Actions/ProductActions";
 
 const Home = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     window.scroll({ top: "0", left: "0", behavior: "smooth" });
   }, []);
-
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
+  // console.log(products)
+  useEffect(() => {
+    dispatch(listProduct());
+  }, [dispatch]);
   return (
     <div className=" mb-">
       <div className="mt-14">
@@ -23,7 +31,7 @@ const Home = () => {
             />
           </div>
         </div>
-        <TodaySlider data={ProductDataApi} />
+        <TodaySlider data={products} />
       </div>
       <div className="container mt-12 mx-auto">
         <div className="sm:flex sm:justify-between md:flex md:justify-center items-center sm:space-x-5 space-x-0 sm:space-y-0 space-y-3">
@@ -32,7 +40,7 @@ const Home = () => {
               <img src="./images/banner_left.png" alt="" />
             </div>
           </div>
-          <div>
+          <div style={{ marginTop: "0px" }}>
             <div className="aspect-w-16 aspect-h-9">
               <img src="./images/banner_right.png" alt="" />
             </div>
@@ -57,6 +65,7 @@ const Home = () => {
           className="border rounded-tl-[9px] rounded-bl-[9px] p-1 pl-3 w-[50%]"
           placeholder="Enter your Email Address"
         />
+       
         <button className="bg-blue-600 w-[15%] p-3 text-white rounded-tr-[9px] rounded-br-[9px]">
           Submit
         </button>
