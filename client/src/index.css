@@ -37,3 +37,4 @@ code {
     @apply font-poppins bg-transparent border border-t-0 border-l-0 border-r-0 focus:outline-none text-white tracking-wide;
 }
 @tailwind utilities;
+

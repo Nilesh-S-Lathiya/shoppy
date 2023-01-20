@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { GoThreeBars } from "react-icons/go";
-import { Link, useNavigate } from "react-router-dom";
-import DropDownMenu from "../../../Components/DropDown/DropDownMenu";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../Redux/Actions/userActions";
+import { Link } from "react-router-dom";
+
 
 
 const AdminHeader = () => {
@@ -15,7 +12,6 @@ const AdminHeader = () => {
     { name: "Customers", link: "/customers" },
     { name: "Notification", link: "/notification" },
   ];
-  let [open, setOpen] = useState(false);
 
   // console.log(userInfo)
 

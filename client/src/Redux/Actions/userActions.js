@@ -29,12 +29,6 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
 
-    // console.log(data)
-    // .then((data) => {
-    //   console.log(data);
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
@@ -91,8 +85,6 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
-
-
 //OTP VERIFY
 
 export const otpverify = (userId, otp) => async (dispatch) => {
@@ -107,7 +99,7 @@ export const otpverify = (userId, otp) => async (dispatch) => {
 
     const { data } = await axios.post(
       `/api/users/verify`,
-      { userId,otp },
+      { userId, otp },
       config
     );
     dispatch({ type: USER_OTPVERIFY_SUCCESS, payload: data });

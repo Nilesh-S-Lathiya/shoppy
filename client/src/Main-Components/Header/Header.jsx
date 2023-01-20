@@ -15,9 +15,9 @@ const Header = () => {
   let [open, setOpen] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo } = userLogin ;
-  
+  const { userInfo } = userLogin;
+  // console.log(userInfo);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logouthandle = () => {
@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <div className="">
       <div className="shadow-md w-full fixed top-0 z-50">
-        <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
+        <div className="md:flex items-center justify-between bg-white py-3 md:px-10 px-7">
           <Link to="/">
             <div
               className="font-bold text-[30px] cursor-pointer flex items-center font-[Poppins] 
@@ -63,6 +63,18 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+            {userInfo ? (
+              userInfo.isAdmin ? (
+                <li className="md:ml-6 text-xl md:my-0 my-7">
+                  <Link
+                    to="/admin"
+                    className="text-gray-800 rounded-[9px] hover:text-white duration-500 p-2 hover:bg-blue-700 active"
+                  >
+                    ADMIN
+                  </Link>
+                </li>
+              ) : null
+            ) : null}
             {userInfo ? (
               <li className="md:ml-6 text-xl md:my-0 my-7">
                 <DropDownMenu

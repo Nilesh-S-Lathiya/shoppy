@@ -1,17 +1,28 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { productdetailsReducer, productListReducer } from "./Reducers/ProductReducers";
+import {
+  adminProductadd,
+  productdelete,
+  productdetailsReducer,
+  productListReducer,
+} from "./Reducers/ProductReducers";
 import { cartReducer } from "./Reducers/CartReducers";
-import { userLoginReducer, userOtpVerifyReducer, userRegisterReducer } from "./Reducers/UserReducers";
+import {
+  userLoginReducer,
+  userOtpVerifyReducer,
+  userRegisterReducer,
+} from "./Reducers/UserReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
-  productDetails:productdetailsReducer ,
+  productDetails: productdetailsReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userOtpVerify: userOtpVerifyReducer,
+  addnewProduct: adminProductadd,
+  adminproductdelete:productdelete,
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
@@ -25,11 +36,9 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   : null;
 
 // Otp
-  const confirmFromLocalStorage = localStorage.getItem("confirmOtp")
+const confirmFromLocalStorage = localStorage.getItem("confirmOtp")
   ? JSON.parse(localStorage.getItem("confirmOtp"))
   : null;
-
-  
 
 const initialState = {
   cart: {

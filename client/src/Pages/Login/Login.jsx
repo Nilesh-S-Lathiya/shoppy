@@ -31,7 +31,7 @@ const Login = () => {
     if (userInfo) {
       navigate("/");
     }
-  },[userInfo])
+  },[navigate,userInfo])
   return (
     <div className="App bg-gray-900 h-screen w-full relative overflow-hidden flex justify-center items-center">
       <div className="h-40-r w-40-r bg-gradient-to-r from-green-400 to-blue-500 rounded-full absolute left-2/3 -top-56 transform rotate-160 animate-pulse"></div>

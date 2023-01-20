@@ -4,12 +4,7 @@ import "./adminsidebar.css";
 import { RxDashboard } from "react-icons/rx";
 import { BiAddToQueue } from "react-icons/bi";
 import { GrView } from "react-icons/gr";
-import {
-  BsCartPlusFill,
-  BsFillPeopleFill,
-  BsCaretRightFill,
-  BsCaretLeftFill,
-} from "react-icons/bs";
+import { BsCartPlusFill, BsFillPeopleFill } from "react-icons/bs";
 const menuItem = [
   {
     path: "",
@@ -39,7 +34,7 @@ const menuItem = [
   },
 ];
 const AdminSidebar = () => {
-  const [inactive, setInactive] = useState(false);
+  const [inactive, setInactive] = useState(true);
   const [active, setActive] = useState(false);
   const location = useLocation();
   const CURRENT_WB_NAME = location.pathname.split("/admin/")[1];

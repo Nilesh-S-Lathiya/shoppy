@@ -2,10 +2,6 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import Product from "./../Models/ProductModel.js";
 
-
-
-
-
 const productRoute = express.Router();
 
 // GET ALL PRODUCTS
@@ -21,8 +17,8 @@ productRoute.get(
           },
         }
       : {};
-    const products = await Product.find({...keyword});
-    res.json(products)
+    const products = await Product.find({ ...keyword });
+    res.json(products);
   })
 );
 
@@ -38,6 +34,20 @@ productRoute.get(
       throw new Error("Product not Found");
     }
   })
+);
+
+productRoute.post(
+  "/delete",
+  asyncHandler(async (req, res) => {
+    console.log(req.body.id)
+    const result = await Product.deleteOne({ _id: req.body.id });
+    if (result.deletedCount === 1) {
+      res.send("Delete Successfully");
+    } else {
+      res.send("Somthing wrong");
+    }
+  }
+  )
 );
 
 export default productRoute;

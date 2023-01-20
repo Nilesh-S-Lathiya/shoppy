@@ -39,9 +39,10 @@ ImportData.post(
   "/adminproduct",
   upload.single("image"),
   asyncHandler(async (req, res) => {
-    // console.log(req.file)
-    const imageURL = `http://localhost:3001/productimageurl/${req.file.filename}`;
-    // console.log(imageURL)
+    // console.log(req.body.formData)
+    // res.send(req)
+    // // console.log(req.file)
+    
 
     const importProducts = await Product.insertMany({
       name: req.body.name,
@@ -52,9 +53,34 @@ ImportData.post(
       stock: 94,
       brand: req.body.brand,
       category: req.body.category,
-      image: imageURL,
+      image: "null",
     });
-    res.send({ importProducts });
+    console.log(importProducts[0]);
+    res.status(200).send({ result: "Product Added Successfully" });
+    // console.log(req)
+
+    ImportData.post(
+      "/adminproduct/img",
+      upload.single("image"),
+      asyncHandler(async (req, res) => {
+        console.log("reqName");
+        const imageURL = `http://localhost:3001/productimageurl/${req.file.filename}`;
+        // console.log(imageURL)
+        const uploadImage = await Product.updateOne(
+          { image: "null" },
+          { image: imageURL }
+        );
+        console.log(uploadImage);
+        const GetData = await Product.find({ image: "null" });
+        console.log(GetData);
+        res.send(GetData);
+      })
+    );
+
+
+
+    // console.log(uploadImage)
+    // await User.updateOne({ _id: userId }, { verified: true });
   })
 );
 
